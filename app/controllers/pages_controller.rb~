@@ -11,5 +11,9 @@ def contact
 def about
     @titre = "About"
   end
-
+  
+def about
+    @titre = "Aide"
+  end
+  
 end
