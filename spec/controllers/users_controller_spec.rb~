@@ -1,9 +1,27 @@
+# encoding: UTF-8
 require 'spec_helper'
 
 describe UsersController do
  render_views
  
-  describe "GET 'new'" do
+  describe "GET 'show'" do
+
+    before(:each) do
+      @user = Factory(:user)
+    end
+
+    it "devrait réussir" do
+      get :show, :id => @user
+      response.should be_success
+    end
+
+    it "devrait trouver le bon utilisateur" do
+      get :show, :id => @user
+      assigns(:user).should == @user
+    end
+  end
+ 
+ describe "GET 'new'" do
     it "devrait reussir" do
       get 'new'
       response.should be_success
@@ -11,7 +29,7 @@ describe UsersController do
     
   it "devrait avoir le titre adequat" do
       get 'new'
-      response.should have_selector("titre", :content => "Inscription")
+      response.should have_selector("title", :content => "Inscription")
     end
   end
 end
